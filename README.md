@@ -6,6 +6,8 @@
 
 A simple CLI tool to output all your Next.js API routes in your console.
 
+<sup>Inspired by the [Laravel Artisan `route:list` Command](https://stillat.com/blog/2016/12/07/laravel-artisan-route-command-the-routelist-command)<sup>
+
 ### ⚠️ For now it is macOS only ⚠️
 
 # Install

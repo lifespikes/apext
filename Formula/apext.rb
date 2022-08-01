@@ -1,9 +1,9 @@
 class Apext < Formula
     desc "A simple CLI tool to output all your Next.js API routes in your console."
     homepage "https://github.com/lifespikes/homebrew-apext"
-    url "https://github.com/lifespikes/homebrew-apext/releases/download/0.0.1/apext-macos-x64.tar.gz"
-    sha256 "0b4f6c87c7105e807839593bf885fb44793ca0800330bec69b5f8eb9c98d9c72"
-    version "0.0.1"
+    url "https://github.com/lifespikes/homebrew-apext/releases/download/0.0.2/apext-macos-x64.tar.gz"
+    sha256 "cd14ac32e3e6b0510483fbf2cab335aff688e3dc2c3e389c0b3876bac4d32f82"
+    version "0.0.2"
     def install
       bin.install "apext"
     end

@@ -30,3 +30,5 @@ export const createAction = async (options: Options) => {
     console.error(error)
   }
 }
+
+export const createDesc = `🎯 ${colors.green('Create a new API route.')}`

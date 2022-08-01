@@ -2,10 +2,11 @@ import { findApiDir, findPagesDir } from '../lib'
 import { createFile } from '../lib/createFile'
 import { createFolder } from '../lib/createFolder'
 import { Options } from '../types'
+import colors from '@colors/colors/safe'
 
 export const createAction = async (options: Options) => {
   try {
-    if (!options.name) throw 'Missing flag --name=<name>'
+    if (!options.name) throw colors.red('Missing flag --name=<name>')
     const extension = options.ts ? 'ts' : 'js'
     const pagesDir = await findPagesDir()
     const apiDir = await findApiDir(pagesDir)

@@ -26,4 +26,5 @@ create.option('--name <name>', 'Name to create route in. eg: --name=login')
 create.option('--path <path>', 'Path to create route in. eg: --path=auth')
 create.option('--ts', 'If you want a Typescript file.')
 create.action(createAction)
+
 program.parse()

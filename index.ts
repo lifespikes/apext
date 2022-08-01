@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-import colors from '@colors/colors/safe'
-import { findApiDir, findPagesDir, traverseDir } from './helpers'
 import { Command } from 'commander'
+import { listAction, listDesc } from './commands'
 
 const program = new Command()
 
@@ -13,22 +12,11 @@ program
   )
   .version('0.0.2')
 
-program
-  .command('list')
-  .description(
-    `🎯 ${colors.green('List all API endpoints in your Next.js project.')}`
-  )
-  .action(async () => {
-    try {
-      const pagesPath = await findPagesDir()
-      const apiPath = await findApiDir(pagesPath)
+// COMMANDS
 
-      if (!apiPath) throw new Error('Could not find API directory')
-
-      await traverseDir(apiPath)
-    } catch (error) {
-      console.log(error)
-    }
-  })
+// LIST COMMAND - OPTIONS: --path
+const list = program.command('list').aliases(['ls, lst']).description(listDesc)
+list.option('--path <path>', 'Path to look routes in. eg: --path=auth')
+list.action(listAction)
 
 program.parse()

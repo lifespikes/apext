@@ -38,9 +38,11 @@ apext list --path=auth
 
 Will create an API endpoint following a REST structure.
 
-### Flags:
+### Argument:
 
-`--name` - **required** (the name of your API endpoint)
+`<name>` - **required** (the name of your API endpoint)
+
+### Flags:
 
 `--path` - **optional** (`/api` folder is default)
 
@@ -50,18 +52,22 @@ Will create an API endpoint following a REST structure.
 ### Example:
 
 ```bash
-apext create --name=login --path=auth --ts
+apext create login --path=auth --ts
 ```
 
 ### Notes:
 
 1. When stating a `--path` you can create nested directories like `organization/public`.
 2. If a folder does not exists, APEXT will create the folder for you.
+3. If a file with that name already exists it will override the existing file.
 
 ### Output file (typescript):
 
 ```ts
 import type { NextApiRequest, NextApiResponse } from 'next'
+
+// APEXT methods comment 👇
+// @methods [GET, POST, PUT, DELETE]
 
 export default async function name(
   req: NextApiRequest,

@@ -21,7 +21,7 @@ list.action(listAction)
 
 // CREATE COMMAND - OPTIONS: --name --path
 const create = program.command('create').description(createDesc)
-create.option('--name <name>', 'Name to create route in. eg: --name=login')
+create.argument('<name>', 'Name of the route to create.')
 create.option('--path <path>', 'Path to create route in. eg: --path=auth')
 create.option('--ts', 'If you want a Typescript file.')
 create.action(createAction)

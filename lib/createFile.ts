@@ -3,6 +3,8 @@ import { writeFile } from 'fs/promises'
 const tsContent = (name: string) => `
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+// @methods [GET,POST,PUT,DELETE]
+
 export default async function ${name}(
   req: NextApiRequest,
   res: NextApiResponse

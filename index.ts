@@ -8,7 +8,7 @@ const program = new Command()
 program
   .name('apext')
   .description(
-    'A simple CLI tool to output all your Next.js API routes in your console. lmao uwu'
+    'A simple CLI tool to output all your Next.js API routes in your console.'
   )
   .version('0.1.0')
 

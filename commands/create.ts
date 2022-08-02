@@ -4,9 +4,8 @@ import { createFolder } from '../lib/createFolder'
 import { Options } from '../types'
 import colors from '@colors/colors/safe'
 
-export const createAction = async (options: Options) => {
+export const createAction = async (name: string, options: Options) => {
   try {
-    if (!options.name) throw colors.red('Missing flag --name=<name>')
     const extension = options.ts ? 'ts' : 'js'
     const pagesDir = await findPagesDir()
     const apiDir = await findApiDir(pagesDir)
@@ -18,12 +17,12 @@ export const createAction = async (options: Options) => {
       // only needed here, because if no path is provided,
       // the file will be created in the api dir
       await createFolder(folderPath)
-      const filePath = `${folderPath}/${options.name}.${extension}`
+      const filePath = `${folderPath}/${name}.${extension}`
       // creates a new file on the folder
       await createFile(filePath, extension)
     } else {
       // creates a new file in the api dir
-      const filePath = `${apiDir}/${options.name}.${extension}`
+      const filePath = `${apiDir}/${name}.${extension}`
       await createFile(filePath, extension)
     }
   } catch (error) {

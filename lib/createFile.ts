@@ -26,6 +26,9 @@ export default async function ${name}(
 }
 `
 const jsContent = (name: string) => `
+
+// @methods [GET,POST,PUT,DELETE]
+
 export default async function ${name}(req,res) {
 
   switch (req.method) {

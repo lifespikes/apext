@@ -33,6 +33,18 @@ Place yourself on your Next.js root directory and run `apext list`
 apext list --path=auth
 ```
 
+### Extra:
+
+Get your route http methods outputted adding the `// @methods` comment. When you use `apext create` to create a new route, it will bring the `// @methods` comment added. Check the command `create` below.
+
+```js
+// my-route.ts
+
+// @methods [GET, POST, PUT, DELETE]
+
+// ...rest of the file
+```
+
 
 ### 🎯 `create`
 

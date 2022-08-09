@@ -1,4 +1,6 @@
-import { writeFile } from 'fs/promises'
+import {writeFile} from 'fs/promises'
+import colors from "@colors/colors/safe";
+import {capitalizeFirstLetter} from "./utils";
 
 const tsContent = (name: string) => `
 import type { NextApiRequest, NextApiResponse } from 'next'
@@ -53,11 +55,15 @@ export const createFile = async (
   language: string
 ): Promise<void> => {
   const file = filePath.split('/').pop() as string //filename.extension
-  const filename = file.split('.')[0] //filename
+  const filename = capitalizeFirstLetter(file.split('.')[0] ?? "") //filename
   if (language === 'ts') {
     await writeFile(filePath, tsContent(filename))
   }
   if (language === 'js') {
     await writeFile(filePath, jsContent(filename))
   }
+
+
+ console.log(colors.green("File created successfully!"))
+  console.log(colors.blue("Path:") + filePath)
 }

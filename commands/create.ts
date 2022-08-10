@@ -5,7 +5,7 @@ import { Options } from '../types'
 import colors from '@colors/colors/safe'
 import fs from "fs";
 
-
+// Ideally this needs to be moved to its own file.
 const checkFileExists = (filePath: string) => {
   const extensions = ['js', 'ts'];
   for (const ext of extensions){

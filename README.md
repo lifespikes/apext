@@ -1,5 +1,7 @@
 ![apextgithub](https://user-images.githubusercontent.com/71573508/182018691-edc8aa18-04a4-4976-bdae-890ada85cc1f.png)
 
+![output](https://user-images.githubusercontent.com/71573508/182311928-350ebae4-308a-455a-935b-d522fa4dbc0b.gif)
+
 # APEXT
 
 <sup>pronounced */eɪpekst/*<sup>
@@ -107,6 +109,4 @@ export default async function name(
 }
 ```
 
-# DEMO 
 
-![output](https://user-images.githubusercontent.com/71573508/182311928-350ebae4-308a-455a-935b-d522fa4dbc0b.gif)

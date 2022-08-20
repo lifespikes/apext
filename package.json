@@ -7,7 +7,7 @@
     "apext": "./build/index.js"
   },
   "pkg": {
-    "scripts": "buid/**/*.js"
+    "scripts": "build/**/*.js"
   },
   "scripts": {
     "build": "npx tsc",

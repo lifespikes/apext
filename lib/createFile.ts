@@ -64,6 +64,10 @@ export const createFile = async (
     await writeFile(filePath, jsContent(filename))
   }
 
+  console.log(' ')
   console.log(colors.green('Route created successfully!'))
-  console.log(colors.blue('Path: ') + filePath)
+  console.log(
+    colors.blue('Click to open the route') + colors.yellow(' => ') + filePath
+  )
+  console.log(' ')
 }

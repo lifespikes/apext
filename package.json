@@ -1,6 +1,6 @@
 {
   "name": "apext",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "",
   "main": "index.ts",
   "bin": {
@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "dev" : "npx tsc --watch",
+    "dev": "npx tsc --watch",
     "package": "pkg . --targets node14-macos-x64 --output apext",
     "i": "node ./build/index.js list"
   },

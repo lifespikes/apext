@@ -3,19 +3,20 @@ import { createFile } from '../lib/createFile'
 import { createFolder } from '../lib/createFolder'
 import { Options } from '../types'
 import colors from '@colors/colors/safe'
-import fs from "fs";
+import fs from 'fs'
+import { toCamelCase } from '../lib/sanitizeRoutes'
 
 // Ideally this needs to be moved to its own file.
 const checkFileExists = (filePath: string) => {
-  const extensions = ['js', 'ts'];
-  for (const ext of extensions){
-    if(fs.existsSync(`${filePath}.${ext}`)){
-      console.log(colors.red("File already exists"))
-      return true;
+  const extensions = ['js', 'ts']
+  for (const ext of extensions) {
+    if (fs.existsSync(`${filePath}.${ext}`)) {
+      console.log(colors.red('File already exists'))
+      return true
     }
   }
 
-  return false;
+  return false
 }
 
 export const createAction = async (name: string, options: Options) => {
@@ -33,16 +34,16 @@ export const createAction = async (name: string, options: Options) => {
       await createFolder(folderPath)
       const filePath = `${folderPath}/${name}.${extension}`
       // creates a new file on the folder
-      if(checkFileExists(`${folderPath}/${name}`)){
-        return;
+      if (checkFileExists(`${folderPath}/${name}`)) {
+        return
       }
       await createFile(filePath, extension)
     } else {
       // creates a new file in the api dir
       const filePath = `${apiDir}/${name}.${extension}`
 
-      if(checkFileExists(`${apiDir}/${name}`)){
-        return;
+      if (checkFileExists(`${apiDir}/${name}`)) {
+        return
       }
       await createFile(filePath, extension)
     }

@@ -1,6 +1,7 @@
-import {writeFile} from 'fs/promises'
-import colors from "@colors/colors/safe";
-import {capitalizeFirstLetter} from "./utils";
+import { writeFile } from 'fs/promises'
+import colors from '@colors/colors/safe'
+import { capitalizeFirstLetter } from './utils'
+import { toCamelCase } from './sanitizeRoutes'
 
 const tsContent = (name: string) => `
 import type { NextApiRequest, NextApiResponse } from 'next'
@@ -14,7 +15,7 @@ export default async function ${name}(
   switch (req.method) {
     case 'GET':
     case 'POST':
-    case 'PUT':    
+    case 'PUT':
     case 'DELETE':
     default:
       res.setHeader('Allow', [
@@ -36,7 +37,7 @@ export default async function ${name}(req,res) {
   switch (req.method) {
     case 'GET':
     case 'POST':
-    case 'PUT':    
+    case 'PUT':
     case 'DELETE':
     default:
       res.setHeader('Allow', [
@@ -55,7 +56,7 @@ export const createFile = async (
   language: string
 ): Promise<void> => {
   const file = filePath.split('/').pop() as string //filename.extension
-  const filename = capitalizeFirstLetter(file.split('.')[0] ?? "") //filename
+  const filename = toCamelCase(file.split('.')[0] ?? '') //filename
   if (language === 'ts') {
     await writeFile(filePath, tsContent(filename))
   }
@@ -63,7 +64,6 @@ export const createFile = async (
     await writeFile(filePath, jsContent(filename))
   }
 
-
- console.log(colors.green("File created successfully!"))
-  console.log(colors.blue("Path:") + filePath)
+  console.log(colors.green('Route created successfully!'))
+  console.log(colors.blue('Path: ') + filePath)
 }

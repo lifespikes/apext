@@ -28,7 +28,7 @@ npm i -g apext
 
 ### 1. 🎯 `list`
 
-Place yourself on your Next.js root directory and run `apext list`
+**Place yourself on your Next.js root directory and run `apext list`**
 
 #### Flags:
 

@@ -1,12 +1,14 @@
 ![apextgithub](https://user-images.githubusercontent.com/71573508/182018691-edc8aa18-04a4-4976-bdae-890ada85cc1f.png)
 
-![output](https://user-images.githubusercontent.com/71573508/182311928-350ebae4-308a-455a-935b-d522fa4dbc0b.gif)
+
+![output](https://user-images.githubusercontent.com/71573508/185773820-7dcdbdb7-535d-4315-bb5c-71f1045f3b88.gif)
+
 
 # APEXT
 
 <sup>pronounced */eɪpekst/*<sup>
 
-A simple CLI tool to output all your Next.js API routes in your console.
+A simple CLI tool to manage and organize Next.js API routes.
 
 <sup>Inspired by the [Laravel Artisan `route:list` Command](https://stillat.com/blog/2016/12/07/laravel-artisan-route-command-the-routelist-command)<sup>
 

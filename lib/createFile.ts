@@ -1,9 +1,8 @@
 import { writeFile } from 'fs/promises'
 import colors from '@colors/colors/safe'
-import { capitalizeFirstLetter } from './utils'
 import { toCamelCase } from './sanitizeRoutes'
 
-const tsContent = (name: string) => `
+const tsContent = (name: string): string => `
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 // @methods [GET,POST,PUT,DELETE]
@@ -28,7 +27,7 @@ export default async function ${name}(
   }
 }
 `
-const jsContent = (name: string) => `
+const jsContent = (name: string): string => `
 
 // @methods [GET,POST,PUT,DELETE]
 
@@ -55,8 +54,8 @@ export const createFile = async (
   filePath: string,
   language: string
 ): Promise<void> => {
-  const file = filePath.split('/').pop() as string //filename.extension
-  const filename = toCamelCase(file.split('.')[0] ?? '') //filename
+  const file = filePath.split('/').pop() as string // filename.extension
+  const filename = toCamelCase(file.split('.')[0] ?? '') // filename
   if (language === 'ts') {
     await writeFile(filePath, tsContent(filename))
   }

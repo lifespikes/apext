@@ -17,7 +17,9 @@
     "package": "pkg . --targets node14-macos-x64 --output apext",
     "i": "node ./build/index.js list",
     "lint": "eslint **/*.ts",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "lint-staged": {
     "**/*.ts": [
@@ -38,6 +40,7 @@
     "@types/node": "^18.6.3",
     "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@vitest/coverage-c8": "^0.22.1",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^22.0.0",
     "eslint-plugin-import": "^2.25.2",
@@ -47,7 +50,8 @@
     "jest": "^28.1.3",
     "lint-staged": "^13.0.3",
     "pkg": "^5.8.0",
-    "typescript": "*"
+    "typescript": "*",
+    "vitest": "^0.22.1"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,5 @@
 {
-    "ignorePatterns": ["**/node_modules/**", "**/build/**"],
+    "ignorePatterns": ["**/node_modules/**", "**/build/**", "tests/fixtures/**/**"],
     "env": {
         "browser": true,
         "es2021": true

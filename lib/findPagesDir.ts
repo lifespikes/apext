@@ -1,10 +1,11 @@
 import process from 'process'
 import colors from '@colors/colors/safe'
+import { join } from 'path'
 import { isDirectory } from './isDirectory'
 
-export const findPagesDir = async (): Promise<string> => {
-  const routePath = process.cwd()
-  const paths = [`${routePath}/pages`, `${routePath}/src/pages`]
+export const findPagesDir = async (path: string = ''): Promise<string> => {
+  const routePath = join(process.cwd(), path)
+  const paths = [join(routePath, 'pages'), join(routePath, 'pages', 'src')]
   for (const path of paths) {
     try {
       if (isDirectory(path)) {

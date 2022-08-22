@@ -2,12 +2,13 @@ import { readdir } from 'fs/promises'
 import colors from '@colors/colors/safe'
 import { isDirectory } from './isDirectory'
 import { getComments, getMethodParam } from './parser'
+import { join } from 'path'
 
-const printEndpoint = async (parent: string, file: string): Promise<void> => {
+const printEndpoint = async (root: string, parent: string, file: string): Promise<string> => {
   const numberOfWhiteSpaces = 44
-  const coloredPath = `${parent}/${colors.green(file)}`
-  const comments = await getComments(`${parent}/${file}`)
-  const { methods } = getMethodParam(comments)
+  const coloredPath = `${parent.replace(root, '')}/${colors.green(file)}`
+  const comments = getComments(`${parent}/${file}`)
+  const methods = getMethodParam(comments)
 
   const value = numberOfWhiteSpaces - coloredPath.length
 
@@ -15,25 +16,28 @@ const printEndpoint = async (parent: string, file: string): Promise<void> => {
   whiteSpaces.push('>')
   const arrow = whiteSpaces.join('')
 
-  if (methods.length > 0) {
-    console.log(`${coloredPath} ${arrow} ${methods}`)
+  let res
+  if (methods) {
+    res = (`${coloredPath} ${arrow} ${methods}`)
   } else {
-    console.log(`${coloredPath}`)
+    res = (`${coloredPath} ${arrow} ${colors.magenta('NOT_FOUND')}`)
   }
+  return res
 }
 
-export const traverseDir = async (path: string, parent: string = '/api'): Promise<void> => {
+export const traverseDir = async (root: string, path: string, _results: string[] = []): Promise<string[]> => {
+  const results = _results
   try {
-    const dirs = await readdir(path)
+    const dirs = (await readdir(path)).sort((a, b) => a.localeCompare(b))
     for (const file of dirs) {
-      const absolutePath = `${path}/${file}`
-      const relativePath = `${parent}/${file}`
+      const absolutePath = join(path, file)
       if (isDirectory(absolutePath)) {
-        await traverseDir(absolutePath, relativePath)
+        return await traverseDir(root, absolutePath, results)
       } else {
-        await printEndpoint(parent, file)
+        results.push(await printEndpoint(root, path, file))
       }
     }
+    return results
   } catch (error: any) {
     if (typeof error === 'string') throw colors.red(error)
     else throw error

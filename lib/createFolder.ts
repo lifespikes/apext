@@ -1,7 +1,7 @@
 import { mkdir } from 'fs/promises'
 import { dirExists } from './dirExists'
 
-export const createFolder = async (path: string) => {
+export const createFolder = async (path: string): Promise<void> => {
   try {
     if (dirExists(path)) {
       return

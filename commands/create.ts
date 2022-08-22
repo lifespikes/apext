@@ -1,32 +1,15 @@
-import { findApiDir, findPagesDir } from '../lib'
-import { createFile } from '../lib/createFile'
-import { createFolder } from '../lib/createFolder'
+import { createFile, createFolder, checkFileExists, findApiDir, findPagesDir } from '../lib'
 import { Options } from '../types'
 import colors from '@colors/colors/safe'
-import fs from 'fs'
-import { toCamelCase } from '../lib/sanitizeRoutes'
 
-// Ideally this needs to be moved to its own file.
-const checkFileExists = (filePath: string) => {
-  const extensions = ['js', 'ts']
-  for (const ext of extensions) {
-    if (fs.existsSync(`${filePath}.${ext}`)) {
-      console.log(colors.red('File already exists'))
-      return true
-    }
-  }
-
-  return false
-}
-
-export const createAction = async (name: string, options: Options) => {
+export const createAction = async (name: string, options: Options): Promise<void> => {
   try {
     const extension = options.ts ? 'ts' : 'js'
     const pagesDir = await findPagesDir()
     const apiDir = await findApiDir(pagesDir)
 
     if (options.path) {
-      const path = options.path.replace(/^\/*/, '')
+      const path: string = options.path.replace(/^\/*/, '')
       const folderPath = `${apiDir}/${path}`
       // creates a new folder if it doesn't exist
       // only needed here, because if no path is provided,

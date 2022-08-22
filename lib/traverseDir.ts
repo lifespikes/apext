@@ -1,9 +1,9 @@
 import { readdir } from 'fs/promises'
-import colors, { white } from '@colors/colors/safe'
+import colors from '@colors/colors/safe'
 import { isDirectory } from './isDirectory'
 import { getComments, getMethodParam } from './parser'
 
-const printEndpoint = async (parent: string, file: string) => {
+const printEndpoint = async (parent: string, file: string): Promise<void> => {
   const numberOfWhiteSpaces = 44
   const coloredPath = `${parent}/${colors.green(file)}`
   const comments = await getComments(`${parent}/${file}`)
@@ -22,7 +22,7 @@ const printEndpoint = async (parent: string, file: string) => {
   }
 }
 
-export const traverseDir = async (path: string, parent: string = '/api') => {
+export const traverseDir = async (path: string, parent: string = '/api'): Promise<void> => {
   try {
     const dirs = await readdir(path)
     for (const file of dirs) {
@@ -38,5 +38,4 @@ export const traverseDir = async (path: string, parent: string = '/api') => {
     if (typeof error === 'string') throw colors.red(error)
     else throw error
   }
-  return
 }

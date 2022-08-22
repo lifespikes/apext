@@ -13,6 +13,6 @@ export const findPagesDir = async (): Promise<string> => {
     } catch (error: any) {}
   }
   throw colors.red(
-    `ERROR: Please run this in your Next.js project root directory. \nIf you are in your Next.js project, we couldn't find the 'pages' directory.\n`
+    'ERROR: Please run this in your Next.js project root directory. \nIf you are in your Next.js project, we couldn\'t find the \'pages\' directory.\n'
   )
 }

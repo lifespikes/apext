@@ -5,6 +5,7 @@ import { MethodsType } from '../types'
 
 export const methodRegex = /@methods[\s\S]*?]/g
 export const commentsRegex = /\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm
+/* eslint-disable-next-line no-useless-escape */
 export const arrayRegex = /[\s\[\]\@methods]/g
 
 const methodsColors = {
@@ -13,7 +14,7 @@ const methodsColors = {
   put: colors.yellow,
   patch: colors.yellow,
   delete: colors.red,
-  head: colors.grey,
+  head: colors.grey
 }
 
 /*
@@ -26,13 +27,13 @@ export const getComments = async (path: string): Promise<string | null> => {
     const comments = content.match(commentsRegex)
 
     // Comments always return a single string array containing comments that match the pattern
-    return comments ? comments[0] : null
+    return (comments != null) ? comments[0] : null
   } catch (e) {
     return null
   }
 }
 
-const colorizeMethods = (methods: string[]) => {
+const colorizeMethods = (methods: string[]): string => {
   return methods
     .map((method) => {
       const methodFn = methodsColors[method.toLocaleLowerCase() as MethodsType]
@@ -41,11 +42,14 @@ const colorizeMethods = (methods: string[]) => {
     .join('|')
 }
 
-export const getMethodParam = (comment: string | null) => {
+export const getMethodParam = (comment: string | null): {
+  methods: string
+  originalLength?: number
+} => {
   const methodMatch = comment ? comment.match(methodRegex) : null
 
-  if (!comment || !methodMatch) {
-    return { methods: [], originalLength: 0 }
+  if (!comment || (methodMatch == null)) {
+    return { methods: '', originalLength: 0 }
   }
   const methods = methodMatch[0]
     .replace(arrayRegex, '')
@@ -53,6 +57,6 @@ export const getMethodParam = (comment: string | null) => {
     .filter(Boolean)
 
   return {
-    methods: colorizeMethods(methods),
+    methods: colorizeMethods(methods)
   }
 }

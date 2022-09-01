@@ -3,7 +3,7 @@
   "version": "0.2.4",
   "description": "",
   "main": "index.ts",
-  "author": "Amilcar Munoz",
+  "author": "Josue Munoz",
   "license": "MIT",
   "bin": {
     "apext": "./build/index.js"

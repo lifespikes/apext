@@ -12,14 +12,15 @@
     "scripts": "build/**/*.js"
   },
   "scripts": {
-    "build": "npx tsc",
+    "build": "rm -rf build; npx tsc",
     "dev": "npx tsc --watch",
     "package": "pkg . --targets node14-macos-x64 --output apext",
     "i": "node ./build/index.js list",
     "lint": "eslint **/*.ts",
     "postinstall": "husky install",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "cli": "yarn build && node ./build/index.js"
   },
   "lint-staged": {
     "**/*.ts": [

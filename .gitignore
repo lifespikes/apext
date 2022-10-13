@@ -6,3 +6,5 @@ apext-macos-x64.tar.gz
 .idea
 apext.config.js
 coverage
+.DS_Store
+!tests/fixtures/**/*

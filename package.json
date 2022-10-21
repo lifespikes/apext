@@ -1,10 +1,20 @@
 {
   "name": "apext",
   "version": "0.2.4",
-  "description": "",
+  "description": "A simple CLI tool to manage and organize Next.js API routes.",
   "main": "index.ts",
   "author": "Josue Munoz",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lifespikes/apext.git"
+  },
+  "keywords": [
+    "apext",
+    "nextjs",
+    "javascript",
+    "typescript"
+  ],
   "bin": {
     "apext": "./build/index.js"
   },
@@ -20,19 +30,25 @@
     "postinstall": "husky install",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "cli": "yarn build && node ./build/index.js"
+    "cli": "yarn build && node ./build/index.js",
+    "release": "release-it"
   },
   "lint-staged": {
     "**/*.ts": [
       "yarn lint --fix"
     ]
   },
-  "keywords": [
-    "apext",
-    "nextjs",
-    "javascript",
-    "typescript"
-  ],
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): v${version}"
+    },
+    "github": {
+      "release": true
+    },
+    "npm": {
+      "publish": false
+    }
+  },
   "dependencies": {
     "@colors/colors": "1.5.0",
     "commander": "9.4.0"
@@ -52,11 +68,8 @@
     "jest": "28.1.3",
     "lint-staged": "13.0.3",
     "pkg": "5.8.0",
+    "release-it": "15.5.0",
     "typescript": "4.7.4",
     "vitest": "0.22.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lifespikes/apext.git"
   }
 }

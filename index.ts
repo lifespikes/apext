@@ -14,7 +14,10 @@ void (async () => {
   // COMMANDS
 
   // LIST COMMAND - OPTIONS: --path
-  const list = program.command('list').aliases(['ls, lst']).description(listDesc)
+  const list = program
+    .command('list')
+    .aliases(['ls, lst'])
+    .description(listDesc)
   list.option('--path <path>', 'Path to look routes in. eg: --path=auth')
   list.action(listAction)
 

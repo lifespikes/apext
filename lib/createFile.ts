@@ -1,66 +1,32 @@
 import { writeFile } from 'fs/promises'
 import colors from '@colors/colors/safe'
 import { toCamelCase } from './sanitizeRoutes'
-
-const tsContent = (name: string): string => `
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-// @methods [GET,POST,PUT,DELETE]
-
-export default async function ${name}(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  switch (req.method) {
-    case 'GET':
-    case 'POST':
-    case 'PUT':
-    case 'DELETE':
-    default:
-      res.setHeader('Allow', [
-        'GET',
-        'POST',
-        'PUT',
-        'DELETE',
-    ])
-      return res.status(405).end(\`Method \${req.method} Not Allowed\`)
-  }
-}
-`
-const jsContent = (name: string): string => `
-
-// @methods [GET,POST,PUT,DELETE]
-
-export default async function ${name}(req,res) {
-
-  switch (req.method) {
-    case 'GET':
-    case 'POST':
-    case 'PUT':
-    case 'DELETE':
-    default:
-      res.setHeader('Allow', [
-        'GET',
-        'POST',
-        'PUT',
-        'DELETE',
-    ])
-      return res.status(405).end(\`Method \${req.method} Not Allowed\`)
-  }
-}
-`
+import _configs from '../defaultConfig'
+import { findConfigFile } from './findConfigFile'
+import { Configs } from '../types'
 
 export const createFile = async (
   filePath: string,
   language: string
 ): Promise<void> => {
+  // CONFIG OPTIONS
+
+  const { tsContent, jsContent, typescript }: Configs = {
+    ..._configs,
+    ...findConfigFile()
+  }
+
   const file = filePath.split('/').pop() as string // filename.extension
   const filename = toCamelCase(file.split('.')[0] ?? '') // filename
-  if (language === 'ts') {
+  if (typescript) {
     await writeFile(filePath, tsContent(filename))
-  }
-  if (language === 'js') {
-    await writeFile(filePath, jsContent(filename))
+  } else {
+    if (language === 'ts') {
+      await writeFile(filePath, tsContent(filename))
+    }
+    if (language === 'js') {
+      await writeFile(filePath, jsContent(filename))
+    }
   }
 
   console.log(' ')

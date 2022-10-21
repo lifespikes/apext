@@ -8,3 +8,4 @@ apext.config.js
 coverage
 .DS_Store
 !tests/fixtures/**/*
+apext.config.js

@@ -1,8 +1,17 @@
-import { createFile, createFolder, checkFileExists, findApiDir, findPagesDir } from '../lib'
+import {
+  createFile,
+  createFolder,
+  checkFileExists,
+  findApiDir,
+  findPagesDir
+} from '../lib'
 import { Options } from '../types'
 import colors from '@colors/colors/safe'
 
-export const createAction = async (name: string, options: Options): Promise<void> => {
+export const createAction = async (
+  name: string,
+  options: Options
+): Promise<void> => {
   try {
     const extension = options.ts ? 'ts' : 'js'
     const pagesDir = await findPagesDir()

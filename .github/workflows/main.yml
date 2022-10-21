@@ -4,8 +4,9 @@ on: [push]
 
 jobs:
   main:
+    env:
+      FORCE_COLOR: true
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3

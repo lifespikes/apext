@@ -1,6 +1,6 @@
 {
   "name": "apext",
-  "version": "0.3.1",
+  "version": "0.3.0",
   "description": "A simple CLI tool to manage and organize Next.js API routes.",
   "main": "index.ts",
   "author": "Josue Munoz",
@@ -27,7 +27,7 @@
     "package": "pkg . --targets node14-macos-x64 --output apext",
     "i": "node ./build/index.js list",
     "lint": "eslint **/*.ts",
-    "postinstall": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
+    "postinstall": "husky install",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "cli": "yarn build && node ./build/index.js",

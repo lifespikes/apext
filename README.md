@@ -111,4 +111,27 @@ export default async function name(
 }
 ```
 
+# Config File
 
+You can add an `apext.config.js` to your Next.js project root directory.
+
+### Options:
+  
+| option     | type     | description                                                                                                                                                                                          |
+|------------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| tsContent  | function | A function `(name: string) => string`. Takes one argument `name` and returns a string. It allows you to set up the content of the API route when just being created with the `create` command.       |
+| jsContent  | function | A function  `(name: string) => string` . Takes one argument  `name`  and returns a string. It allows you to set up the content of the API route when just being created with the  `create`  command. |
+| typescript | boolean  | If you are programming in Typescript you can set up this option and all API routes will be Typescript files without specifying the `--ts` flag.                                                      |                                                   |   |   |                                                   |   |   |
+  
+### Example of tsContent/jsContent
+  
+```js
+  module.exports = {
+    jsContent: (name) => `
+      export default async function ${name} (req, res) {
+        return res.status(200).json('Hello from Apext Config')
+      }
+    `
+  }
+  
+```

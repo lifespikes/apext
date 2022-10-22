@@ -1,5 +1,5 @@
 export default {
-  tsConfig: (name: string): string => `
+  tsContent: (name: string): string => `
     import type { NextApiRequest, NextApiResponse } from 'next'
     
     // @methods [GET,POST,PUT,DELETE]
@@ -44,5 +44,6 @@ export default {
         return res.status(405).end(\`Method \${req.method} Not Allowed\`)
       }
     }
-    `
+    `,
+  typescript: false
 }

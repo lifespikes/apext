@@ -3,7 +3,8 @@ import {
   createFolder,
   checkFileExists,
   findApiDir,
-  findPagesDir
+  findPagesDir,
+  getConfigs
 } from '../lib'
 import { Options } from '../types'
 import colors from '@colors/colors/safe'
@@ -13,7 +14,10 @@ export const createAction = async (
   options: Options
 ): Promise<void> => {
   try {
-    const extension = options.ts ? 'ts' : 'js'
+    // CONFIG OPTIONS
+    const { typescript: tsConfig } = getConfigs()
+
+    const extension = tsConfig ? 'ts' : options.ts ? 'ts' : 'js'
     const pagesDir = await findPagesDir()
     const apiDir = await findApiDir(pagesDir)
 

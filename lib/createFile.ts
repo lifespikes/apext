@@ -1,20 +1,14 @@
-import { writeFile } from 'fs/promises'
 import colors from '@colors/colors/safe'
+import { writeFile } from 'fs/promises'
 import { toCamelCase } from './sanitizeRoutes'
-import _configs from '../defaultConfig'
-import { findConfigFile } from './findConfigFile'
-import { Configs } from '../types'
+import { getConfigs } from './getConfigs'
 
 export const createFile = async (
   filePath: string,
   language: string
 ): Promise<void> => {
   // CONFIG OPTIONS
-
-  const { tsContent, jsContent, typescript }: Configs = {
-    ..._configs,
-    ...findConfigFile()
-  }
+  const { jsContent, tsContent, typescript } = getConfigs()
 
   const file = filePath.split('/').pop() as string // filename.extension
   const filename = toCamelCase(file.split('.')[0] ?? '') // filename

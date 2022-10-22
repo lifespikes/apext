@@ -3,8 +3,10 @@ import colors from '@colors/colors/safe'
 import { join } from 'path'
 import { isDirectory } from './isDirectory'
 import fs from 'fs'
+import { Configs } from '../types'
+import defaultConfig from '../defaultConfig'
 
-export const findConfigFile = (): any => {
+export const getConfigs = (): Configs => {
   const routePath = join(process.cwd())
   if (isDirectory(routePath)) {
     // check if file exists
@@ -13,18 +15,14 @@ export const findConfigFile = (): any => {
     const jsPath = fs.existsSync(jsConfig)
     const tsPath = fs.existsSync(tsConfig)
 
-    if (!jsPath && !tsPath) {
-      return {}
-    }
-
     if (jsPath) {
-      return require(jsConfig)
+      return { ...defaultConfig, ...require(jsConfig) }
     }
 
     if (tsPath) {
-      return require(tsConfig)
+      return { ...defaultConfig, ...require(tsConfig) }
     }
-    return {}
+    return { ...defaultConfig }
   }
 
   throw colors.red(

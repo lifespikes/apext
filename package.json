@@ -1,6 +1,6 @@
 {
   "name": "apext",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "A simple CLI tool to manage and organize Next.js API routes.",
   "main": "index.ts",
   "author": "Josue Munoz",

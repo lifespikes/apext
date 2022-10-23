@@ -2,18 +2,18 @@
 
 exports[`lists files from root level pages 1`] = `
 [
-  "/pages/api/[32mfile-no-comments.ts[39m -> [35mNOT_FOUND[39m",
-  "/pages/api/[32mfile1.ts[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
-  "/pages/api/nested/[32ma.ts[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
-  "/pages/api/nested/[32mb.ts[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
+  "/api/[32mfile-no-comments[39m -> [35mAdd @method comment. See: https://apext.vercel.app/docs/methods[39m",
+  "/api/[32mfile1[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
+  "/api/nested/[32ma[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
+  "/api/nested/[32mb[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
 ]
 `;
 
 exports[`lists files from src level pages 1`] = `
 [
-  "/pages/api/[32mfile-no-comments.ts[39m -> [35mNOT_FOUND[39m",
-  "/pages/api/[32mfile1.ts[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
-  "/pages/api/nested/[32ma.ts[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
-  "/pages/api/nested/[32mb.ts[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
+  "/api/[32mfile-no-comments[39m -> [35mAdd @method comment. See: https://apext.vercel.app/docs/methods[39m",
+  "/api/[32mfile1[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
+  "/api/nested/[32ma[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
+  "/api/nested/[32mb[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
 ]
 `;

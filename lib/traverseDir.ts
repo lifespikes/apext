@@ -4,9 +4,16 @@ import { isDirectory } from './isDirectory'
 import { getComments, getMethodParam } from './parser'
 import { join } from 'path'
 
-const printEndpoint = async (root: string, parent: string, file: string): Promise<string> => {
-  const numberOfWhiteSpaces = 44
-  const coloredPath = `${parent.replace(root, '')}/${colors.green(file)}`
+const printEndpoint = async (
+  root: string,
+  parent: string,
+  file: string
+): Promise<string> => {
+  const numberOfWhiteSpaces = 47
+  const coloredPath = `${parent.replace(
+    join(root, 'pages'),
+    ''
+  )}/${colors.green(file.replace(/\.[^.]*$/, ''))}`
   const comments = getComments(`${parent}/${file}`)
   const methods = getMethodParam(comments)
 
@@ -18,21 +25,27 @@ const printEndpoint = async (root: string, parent: string, file: string): Promis
 
   let res
   if (methods) {
-    res = (`${coloredPath} ${arrow} ${methods}`)
+    res = `${coloredPath} ${arrow} ${methods}`
   } else {
-    res = (`${coloredPath} ${arrow} ${colors.magenta('NOT_FOUND')}`)
+    res = `${coloredPath} ${arrow} ${colors.magenta(
+      'Add @method comment. See: https://apext.vercel.app/docs/methods'
+    )}`
   }
   return res
 }
 
-export const traverseDir = async (root: string, path: string, _results: string[] = []): Promise<string[]> => {
+export const traverseDir = async (
+  root: string,
+  path: string,
+  _results: string[] = []
+): Promise<string[]> => {
   const results = _results
   try {
     const dirs = (await readdir(path)).sort((a, b) => a.localeCompare(b))
     for (const file of dirs) {
-      const absolutePath = join(path, file)
-      if (isDirectory(absolutePath)) {
-        return await traverseDir(root, absolutePath, results)
+      const filePath = join(path, file)
+      if (isDirectory(filePath)) {
+        await traverseDir(root, filePath, results)
       } else {
         results.push(await printEndpoint(root, path, file))
       }

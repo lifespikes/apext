@@ -28,7 +28,7 @@ const printEndpoint = async (
     res = `${coloredPath} ${arrow} ${methods}`
   } else {
     res = `${coloredPath} ${arrow} ${colors.magenta(
-      'Add @method comment. See: https://apext.vercel.app/docs/methods'
+      'See: https://apext.vercel.app/docs/methods'
     )}`
   }
   return res
@@ -40,6 +40,7 @@ export const traverseDir = async (
   _results: string[] = []
 ): Promise<string[]> => {
   const results = _results
+
   try {
     const dirs = (await readdir(path)).sort((a, b) => a.localeCompare(b))
     for (const file of dirs) {

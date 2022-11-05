@@ -21,8 +21,8 @@ export const findDirectories = (
 
     return {
       apiPath: specificPath,
-      pagesPath: specificPath,
-      rootPath: resolve()
+      pagesPath: resolve('src', 'pages'),
+      rootPath: resolve('src')
     }
   }
 

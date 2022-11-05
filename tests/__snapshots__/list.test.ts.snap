@@ -2,7 +2,7 @@
 
 exports[`lists files from root level pages 1`] = `
 [
-  "/api/[32mfile-no-comments[39m -> [35mAdd @method comment. See: https://apext.vercel.app/docs/methods[39m",
+  "/api/[32mfile-no-comments[39m -> [35mSee: https://apext.vercel.app/docs/methods[39m",
   "/api/[32mfile1[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
   "/api/nested/[32ma[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
   "/api/nested/[32mb[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
@@ -11,7 +11,7 @@ exports[`lists files from root level pages 1`] = `
 
 exports[`lists files from src level pages 1`] = `
 [
-  "/api/[32mfile-no-comments[39m -> [35mAdd @method comment. See: https://apext.vercel.app/docs/methods[39m",
+  "/api/[32mfile-no-comments[39m -> [35mSee: https://apext.vercel.app/docs/methods[39m",
   "/api/[32mfile1[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
   "/api/nested/[32ma[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",
   "/api/nested/[32mb[39m -> [34mGET[39m|[33mPOST[39m|[33mPUT[39m|[31mDELETE[39m",

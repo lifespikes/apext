@@ -9,9 +9,10 @@ export const findDirectories = (
   pagesPath: string
   apiPath: string
 } => {
+  const isTest = pathOption.includes('test')
   let rootPath
   let pagesPath
-  if (pathOption) {
+  if (pathOption && !isTest) {
     const specificPath = resolve('src', 'pages', 'api', pathOption)
     if (!dirExists(specificPath)) {
       throw colors.red(

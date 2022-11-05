@@ -27,8 +27,8 @@ export const findDirectories = (
   }
 
   rootPath = resolve(pathOption)
-  console.log(rootPath)
   pagesPath = resolve(pathOption, 'pages')
+
   if (!dirExists(pagesPath)) {
     pagesPath = resolve(pathOption, 'src', 'pages')
     rootPath = resolve(rootPath, 'src')
@@ -46,11 +46,6 @@ export const findDirectories = (
     )
   }
 
-  console.log({
-    rootPath,
-    pagesPath,
-    apiPath
-  })
 
   return {
     rootPath,

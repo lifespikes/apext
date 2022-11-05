@@ -1,3 +1,4 @@
+import { findPagesDir } from './findPagesDir'
 import fs from 'fs'
 import colors from '@colors/colors/safe'
 import { MethodsType } from '../types'
@@ -19,9 +20,17 @@ const methodsColors = {
 /*
  * Get all comments from a file
  */
-export const getComments = (path: string): string[] => {
-  const content = fs.readFileSync(path, 'utf8')
-  return Array.from(content.matchAll(commentsRegex)).map(x => x[0])
+export const getComments = async (path: string): Promise<string | null> => {
+  const pagesPath = await findPagesDir()
+  try {
+    const content = fs.readFileSync(`${pagesPath}/${path}`, 'utf8')
+    const comments = content.match(commentsRegex)
+
+    // Comments always return a single string array containing comments that match the pattern
+    return comments != null ? comments[0] : null
+  } catch (e) {
+    return null
+  }
 }
 
 const colorizeMethods = (methods: string[]): string => {
@@ -33,18 +42,23 @@ const colorizeMethods = (methods: string[]): string => {
     .join('|')
 }
 
-/**
- * For each provided comment, matches the first occurrence of the methods regex
- * @param comments
- */
-export const getMethodParam = (comments: string[]): string =>
-  comments.reduce((acc, comment) => {
-    const methodMatch = comment ? comment.match(methodRegex) : null
-    if (methodMatch) {
-      return colorizeMethods(methodMatch[0]
-        .replace(arrayRegex, '')
-        .split(',')
-        .filter(Boolean))
-    }
-    return acc
-  }, '')
+export const getMethodParam = (
+  comment: string | null
+): {
+  methods: string
+  originalLength?: number
+} => {
+  const methodMatch = comment ? comment.match(methodRegex) : null
+
+  if (!comment || methodMatch == null) {
+    return { methods: '', originalLength: 0 }
+  }
+  const methods = methodMatch[0]
+    .replace(arrayRegex, '')
+    .split(',')
+    .filter(Boolean)
+
+  return {
+    methods: colorizeMethods(methods)
+  }
+}

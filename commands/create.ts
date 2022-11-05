@@ -14,6 +14,12 @@ export const createAction = async (
   options: Options
 ): Promise<void> => {
   try {
+    if (name.includes('/')) {
+      throw colors.red(
+        'The name of the route cannot contain a slash. Please use a hyphen instead.'
+      )
+    }
+
     // CONFIG OPTIONS
     const { typescript: tsConfig } = getConfigs()
 
@@ -23,11 +29,14 @@ export const createAction = async (
 
     if (options.path) {
       const path: string = options.path.replace(/^\/*/, '')
+      console.log(path)
       const folderPath = `${apiDir}/${path}`
       // creates a new folder if it doesn't exist
       // only needed here, because if no path is provided,
       // the file will be created in the api dir
+
       await createFolder(folderPath)
+
       const filePath = `${folderPath}/${name}.${extension}`
       // creates a new file on the folder
       if (checkFileExists(`${folderPath}/${name}`)) {

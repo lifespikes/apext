@@ -9,4 +9,3 @@ coverage
 .DS_Store
 !tests/fixtures/**/*
 apext.config.js
-package-lock.json

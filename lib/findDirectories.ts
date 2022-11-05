@@ -3,17 +3,34 @@ import { dirExists } from './dirExists'
 import colors from '@colors/colors/safe'
 
 export const findDirectories = (
-  path: string = ''
+  pathOption: string = ''
 ): {
   rootPath: string
   pagesPath: string
   apiPath: string
 } => {
-  let rootPath = resolve(path)
-  let pagesPath = resolve(path, 'pages')
+  let rootPath
+  let pagesPath
+  if (pathOption) {
+    const specificPath = resolve('src', 'pages', 'api', pathOption)
+    if (!dirExists(specificPath)) {
+      throw colors.red(
+        `The path ${pathOption} does not exist. Please specify a valid path under the /api directory.`
+      )
+    }
 
+    return {
+      apiPath: specificPath,
+      pagesPath: resolve('src', 'pages'),
+      rootPath: resolve('src')
+    }
+  }
+
+  rootPath = resolve(pathOption)
+  console.log(rootPath)
+  pagesPath = resolve(pathOption, 'pages')
   if (!dirExists(pagesPath)) {
-    pagesPath = resolve(path, 'src', 'pages')
+    pagesPath = resolve(pathOption, 'src', 'pages')
     rootPath = resolve(rootPath, 'src')
   }
   if (!dirExists(pagesPath)) {
@@ -27,7 +44,6 @@ export const findDirectories = (
       "ERROR: We could not find the 'api' directory in your 'pages' directory. \n You either don't have one or you are running this CLI outside your Next.js root directory.\n"
     )
   }
-
   return {
     rootPath,
     pagesPath,

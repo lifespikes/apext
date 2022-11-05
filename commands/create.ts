@@ -14,6 +14,11 @@ export const createAction = async (
   options: Options
 ): Promise<void> => {
   try {
+    if (name.includes('/')) {
+      throw colors.red(
+        'The name of the route cannot contain a slash. Please use a hyphen instead.'
+      )
+    }
     // CONFIG OPTIONS
     const { typescript: tsConfig } = getConfigs()
 

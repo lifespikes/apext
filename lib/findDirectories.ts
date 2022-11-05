@@ -2,28 +2,56 @@ import { resolve } from 'path'
 import { dirExists } from './dirExists'
 import colors from '@colors/colors/safe'
 
-export const findDirectories = (path: string = ''): {
+export const findDirectories = (
+  pathOption: string = ''
+): {
   rootPath: string
   pagesPath: string
   apiPath: string
 } => {
-  let rootPath = resolve(path)
-  let pagesPath = resolve(path, 'pages')
+  let rootPath
+  let pagesPath
+  if (pathOption) {
+    const specificPath = resolve('src', 'pages', 'api', pathOption)
+    if (!dirExists(specificPath)) {
+      throw colors.red(
+        `The path ${pathOption} does not exist. Please specify a valid path under the /api directory.`
+      )
+    }
+
+    return {
+      apiPath: specificPath,
+      pagesPath: specificPath,
+      rootPath: resolve()
+    }
+  }
+
+  rootPath = resolve(pathOption)
+  console.log(rootPath)
+  pagesPath = resolve(pathOption, 'pages')
   if (!dirExists(pagesPath)) {
-    pagesPath = resolve(path, 'src', 'pages')
+    pagesPath = resolve(pathOption, 'src', 'pages')
     rootPath = resolve(rootPath, 'src')
   }
   if (!dirExists(pagesPath)) {
+    console.log(dirExists(pagesPath))
     throw colors.red(
-      'ERROR: Please run this in your Next.js project root directory or provide a valid path. \nIf you are in your Next.js project, we couldn\'t find the \'pages\' directory.\n'
+      "ERROR: Please run this in your Next.js project root directory or provide a valid path. \nIf you are in your Next.js project, we couldn't find the 'pages' directory.\n"
     )
   }
   const apiPath = resolve(pagesPath, 'api')
   if (!dirExists(apiPath)) {
     throw colors.red(
-      'ERROR: We could not find the \'api\' directory in your \'pages\' directory. \n You either don\'t have one or you are running this CLI outside your Next.js root directory.\n'
+      "ERROR: We could not find the 'api' directory in your 'pages' directory. \n You either don't have one or you are running this CLI outside your Next.js root directory.\n"
     )
   }
+
+  console.log({
+    rootPath,
+    pagesPath,
+    apiPath
+  })
+
   return {
     rootPath,
     pagesPath,

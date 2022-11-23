@@ -26,7 +26,9 @@ export const createFile = async (
   console.log(' ')
   console.log(colors.green('Route created successfully!'))
   console.log(
-    colors.blue('Click to open the route') + colors.yellow(' => ') + filePath
+    colors.blue('Click to open the route') +
+      colors.yellow(' => ') +
+      filePath.split('/pages')[1]
   )
   console.log(' ')
 }
